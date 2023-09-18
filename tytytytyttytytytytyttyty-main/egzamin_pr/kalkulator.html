@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Body Mass Index</title>
+    <link rel="stylesheet" href="styl.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <img src="mega-giga-animacja.gif" alt="" />
+      </header>
+      <nav>
+        <hr />
+        <h2><a href="index.html">BMI</a></h2>
+        <hr />
+        <h2><a href="kalkulator.html">kalkulator</a></h2>
+        <hr />
+      </nav>
+      <section>
+        <form action="#">
+          <p>Waga:</p>
+          <label for="waga">
+            <input type="number" id="waga" />
+          </label>
+          <p>Wzrost:</p>
+          <label for="wzrost">
+            <input type="number" id="wzrost" />
+          </label>
+          <button id="oblicz">oblicz BMI</button>
+        </form>
+        <p id="wynik"></p>
+        <p id="kategoria"></p>
+      </section>
+      <footer></footer>
+    </main>
+
+    <script>
+      let waga = document.querySelector("#waga");
+      let wzrost = document.querySelector("#wzrost");
+      const button = document.querySelector("#oblicz");
+      let wynik = document.querySelector("#wynik");
+      let kategoria = document.querySelector("#kategoria");
+
+      button.addEventListener("click", function (evt) {
+        evt.preventDefault();
+
+        let BMI = 0;
+        BMI = (waga.value * 10000) / (wzrost.value * wzrost.value);
+        console.log(BMI);
+        wynik.innerHTML = `Twój BMI = ${BMI}`;
+
+        let kategoria_element = document.createElement("p");
+        kategoria_element.style.fontsize = "50px";
+
+        if (BMI < 18.5) {
+          kategoria_element.innerHTML = "masz niedowage";
+          kategoria_element.style.color = "green";
+        } else if (BMI > 18.5 && BMI < 24.9) {
+          kategoria_element.innerHTML = "norma";
+          kategoria_element.style.color = "green";
+        } else if (BMI > 30 && BMI < 34.9) {
+          kategoria_element.innerHTML = "masz otylosc 1st";
+          kategoria_element.style.color = "red";
+        } else if (BMI > 35 && BMI < 39.9) {
+          kategoria_element.innerHTML = "masz otylosc 2st";
+          kategoria_element.style.color = "red";
+        } else if (BMI > 39.9) {
+          kategoria_element.innerHTML = "masz otylosc 3st";
+          kategoria_element.style.color = "red";
+        }
+
+        kategoria.appendChild(kategoria_element);
+      });
+    </script>
+  </body>
+</html>
